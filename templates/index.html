@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #dff6eb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #4CAF50;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        input {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            width: 96%;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            background-color: #e8f5e9;
+            outline: none;
+        }
+
+        button {
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 2rem;
+            background-color: #e7ffe7;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .results h3 {
+            font-size: 1.5rem;
+            color: #388e3c;
+        }
+
+        .results p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #388e3c;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h2 {
+                /* margin-top: 5rem; */
+                font-size: 1.5rem;
+            }
+
+            input, button {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌱 Crop Recommendation System</h2>
+
+        <form action="/" method="POST">
+            <input type="text" name="N" placeholder="Nitrogen (N)" required>
+            <input type="text" name="P" placeholder="Phosphorus (P)" required>
+            <input type="text" name="K" placeholder="Potassium (K)" required>
+            <input type="text" name="temperature" placeholder="Temperature (°C)" required>
+            <input type="text" name="humidity" placeholder="Humidity (%)" required>
+            <input type="text" name="ph" placeholder="pH" required>
+            <input type="text" name="rainfall" placeholder="Rainfall (mm)" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if top_crop %}
+        <div class="results">
+            <h3>Top Recommended Crop:</h3>
+            <p><strong>{{ top_crop[0] }}</strong> – Confidence: {{ top_crop[1] }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
